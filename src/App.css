@@ -16,3 +16,11 @@
   text-align: center;
   width: 34px;
 }
+
+.game {
+  display: flex;
+  flex-direction: column;   /* 棋盘、状态文字、历史记录竖着排列 */
+  align-items: center;      /* 水平居中 */
+  justify-content: center;  /* 垂直居中 */
+  min-height: 100vh;        /* 容器占满整个屏幕高度，配合上面的垂直居中 */
+}
