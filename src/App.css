@@ -1,26 +1,97 @@
-.board-row {
+/* ===== 全局背景 + 页面居中 ===== */
+body {
+  margin: 0;
+  min-height: 100vh;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  color: #e2e8f0;
 }
 
-.square {
-  background: #fff;
-  border: 1px solid #999;
-  float: left;
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 34px;
-  margin-right: -1px;
-  margin-top: -1px;
-  padding: 0;
-  text-align: center;
-  width: 34px;
-}
-
+/* ===== 游戏卡片（毛玻璃） ===== */
 .game {
   display: flex;
-  flex-direction: column;   /* 棋盘、状态文字、历史记录竖着排列 */
-  align-items: center;      /* 水平居中 */
-  justify-content: center;  /* 垂直居中 */
-  min-height: 100vh;        /* 容器占满整个屏幕高度，配合上面的垂直居中 */
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  padding: 40px 48px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(16px);
+}
+
+/* ===== 棋盘行：用 gap 代替原来的负 margin 合并边框 ===== */
+.board-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.board-row:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== 格子 ===== */
+.square {
+  width: 84px;
+  height: 84px;
+  font-size: 38px;
+  font-weight: 700;
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  cursor: pointer;
+  line-height: 1;
+  transition: all 0.18s ease;
+}
+.square:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(129, 140, 248, 0.7);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(99, 102, 241, 0.28);
+}
+.square:focus-visible {
+  outline: 2px solid #818cf8;
+  outline-offset: 3px;
+}
+
+/* ===== X / O 异色 ===== */
+.square-x { color: #60a5fa; }  /* 蓝 */
+.square-o { color: #f472b6; }  /* 粉 */
+
+/* ===== 当前状态文字 ===== */
+.status {
+  font-size: 18px;
+  font-weight: 600;
+  color: #c7d2fe;
+  letter-spacing: 1px;
+}
+
+/* ===== 操作历史列表 ===== */
+.game-info ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+.game-info button {
+  padding: 8px 20px;
+  font-size: 14px;
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.game-info button:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateX(4px);
 }
