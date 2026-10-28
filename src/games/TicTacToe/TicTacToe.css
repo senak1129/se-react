@@ -1,0 +1,111 @@
+/* ===== 井字棋：毛玻璃卡片 ===== */
+.tictactoe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  padding: 40px 48px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(16px);
+}
+
+/* ===== 棋盘行 ===== */
+.tictactoe .board-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.tictactoe .board-row:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== 格子 ===== */
+.tictactoe .square {
+  width: 84px;
+  height: 84px;
+  font-size: 38px;
+  font-weight: 700;
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+  cursor: pointer;
+  line-height: 1;
+  transition: all 0.18s ease;
+}
+.tictactoe .square:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(129, 140, 248, 0.7);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(99, 102, 241, 0.28);
+}
+.tictactoe .square:focus-visible {
+  outline: 2px solid #818cf8;
+  outline-offset: 3px;
+}
+
+/* ===== X / O 异色 ===== */
+.tictactoe .square-x {
+  color: #60a5fa;
+}
+.tictactoe .square-o {
+  color: #f472b6;
+}
+
+/* ===== 当前状态文字 ===== */
+.tictactoe .status {
+  font-size: 18px;
+  font-weight: 600;
+  color: #c7d2fe;
+  letter-spacing: 1px;
+}
+
+/* ===== 历史步骤列表 ===== */
+.tictactoe .game-info ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+.tictactoe .move-btn {
+  padding: 8px 20px;
+  font-size: 14px;
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.tictactoe .move-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: translateX(4px);
+}
+.tictactoe .move-btn-active {
+  color: #c7d2fe;
+  border-color: rgba(129, 140, 248, 0.65);
+  background: rgba(99, 102, 241, 0.22);
+}
+
+/* ===== 小屏适配 ===== */
+@media (max-width: 420px) {
+  .tictactoe {
+    padding: 28px 24px;
+  }
+  .tictactoe .square {
+    width: 64px;
+    height: 64px;
+    font-size: 30px;
+    border-radius: 12px;
+  }
+  .tictactoe .board-row {
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+}
