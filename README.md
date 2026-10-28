@@ -23,9 +23,19 @@ src/
 │   └── GameShell.jsx     # 游戏外壳（返回大厅 + 游戏标题）
 └── games/
     ├── index.js          # 游戏注册表（唯一需要登记的地方）
-    └── TicTacToe/        # 井字棋
-        ├── index.jsx     # 游戏组件
-        ├── TicTacToe.css # 游戏样式（选择器均以 .tictactoe 限定）
+    ├── TicTacToe/        # 井字棋
+    │   ├── index.jsx     # 游戏组件
+    │   ├── TicTacToe.css # 游戏样式（选择器均以 .tictactoe 限定）
+    │   └── Icon.jsx      # 大厅卡片图标
+    └── K8sLab/           # K8S 实验室（拖拽资源拓扑闯关）
+        ├── index.jsx     # 游戏主组件（画布 + 三栏布局）
+        ├── levels.js     # 关卡定义（目标与检查项）
+        ├── validate.js   # 校验纯函数
+        ├── Sidebar.jsx   # 左侧资源库（可拖拽/点击）
+        ├── GoalPanel.jsx # 右侧关卡目标与部署结果
+        ├── ResourceIcon.jsx
+        ├── nodes/ResourceNode.jsx  # 自定义资源节点
+        ├── K8sLab.css
         └── Icon.jsx      # 大厅卡片图标
 ```
 

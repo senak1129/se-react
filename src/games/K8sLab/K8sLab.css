@@ -1,0 +1,346 @@
+/* ===== K8S 实验室：三栏布局 ===== */
+.k8s-lab {
+  width: 100%;
+  height: calc(100vh - 160px);
+  min-height: 560px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.k8s-lab-body {
+  display: flex;
+  height: 100%;
+  min-height: 0;
+}
+
+/* ===== 左侧物料栏 ===== */
+.sidebar {
+  width: 188px;
+  flex-shrink: 0;
+  padding: 18px 14px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  overflow-y: auto;
+}
+
+.sidebar-title {
+  margin: 0 0 4px;
+  font-size: 15px;
+}
+
+.sidebar-hint {
+  margin: 0 0 14px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+.resource-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  cursor: grab;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.resource-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(129, 140, 248, 0.5);
+  transform: translateX(2px);
+}
+
+.resource-item:active {
+  cursor: grabbing;
+}
+
+.ri-name {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ri-desc {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.sidebar-tip {
+  margin-top: 14px;
+  padding: 10px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #94a3b8;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 10px;
+}
+
+/* ===== 中间画布 ===== */
+.canvas-wrap {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+
+.canvas-wrap .react-flow {
+  background: #0b1220;
+}
+
+/* ===== 资源节点 ===== */
+.resource-node {
+  min-width: 148px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(30, 41, 59, 0.96);
+  border: 1.5px solid;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.rn-deployment {
+  border-color: #3b82f6;
+}
+.rn-service {
+  border-color: #8b5cf6;
+}
+.rn-pod {
+  border-color: #06b6d4;
+}
+
+.rn-deployment .rn-header {
+  color: #60a5fa;
+}
+.rn-service .rn-header {
+  color: #a78bfa;
+}
+.rn-pod .rn-header {
+  color: #22d3ee;
+}
+
+.rn-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.rn-kind {
+  font-size: 12px;
+}
+
+.rn-label {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.rn-image {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 2px 7px;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 11px;
+  color: #94a3b8;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+}
+
+/* 部署成功：全部节点变绿 */
+.k8s-lab.solved .resource-node {
+  border-color: #34d399;
+  box-shadow: 0 0 22px rgba(52, 211, 153, 0.35);
+}
+
+/* 连线锚点 */
+.react-flow__handle {
+  width: 10px;
+  height: 10px;
+  background: #818cf8;
+  border: 2px solid #0b1220;
+}
+
+/* ===== 右侧目标面板 ===== */
+.goal-panel {
+  width: 292px;
+  flex-shrink: 0;
+  padding: 20px 18px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  overflow-y: auto;
+}
+
+.level-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: 12px;
+  color: #c7d2fe;
+  background: rgba(99, 102, 241, 0.18);
+  border: 1px solid rgba(129, 140, 248, 0.4);
+  border-radius: 999px;
+}
+
+.level-title {
+  margin: 12px 0 8px;
+  font-size: 20px;
+}
+
+.level-brief {
+  margin: 0 0 18px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #94a3b8;
+}
+
+.checks h3 {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: #cbd5e1;
+}
+
+.checks ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checks li {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  padding: 8px 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.check-mark {
+  flex-shrink: 0;
+  font-weight: 700;
+}
+
+.checks .pending {
+  color: #94a3b8;
+}
+.checks .pending .check-mark {
+  color: #64748b;
+}
+.checks .pass {
+  color: #6ee7b7;
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(52, 211, 153, 0.3);
+}
+.checks .fail {
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(248, 113, 113, 0.3);
+}
+
+.goal-actions {
+  display: flex;
+  gap: 10px;
+  margin: 18px 0 6px;
+}
+
+.validate-btn {
+  flex: 1;
+  padding: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.validate-btn:hover {
+  filter: brightness(1.15);
+}
+
+.reset-btn {
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.reset-btn:hover {
+  background: rgba(255, 255, 255, 0.13);
+}
+
+/* ===== 模拟终端 ===== */
+.terminal {
+  margin-top: 16px;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.terminal-title {
+  padding: 6px 10px;
+  font-size: 12px;
+  color: #6ee7b7;
+  background: rgba(16, 185, 129, 0.12);
+}
+
+.terminal pre {
+  margin: 0;
+  padding: 10px 12px;
+  font-family: Consolas, 'Courier New', monospace;
+  font-size: 11px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  color: #a7f3d0;
+  background: rgba(2, 6, 23, 0.7);
+}
+
+/* ===== 窄屏：上下堆叠 ===== */
+@media (max-width: 900px) {
+  .k8s-lab {
+    height: auto;
+    min-height: 0;
+  }
+  .k8s-lab-body {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .sidebar-title,
+  .sidebar-hint,
+  .sidebar-tip {
+    width: 100%;
+  }
+  .resource-item {
+    margin-bottom: 0;
+  }
+  .canvas-wrap {
+    flex: none;
+    height: 420px;
+  }
+  .goal-panel {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
