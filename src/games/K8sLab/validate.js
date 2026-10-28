@@ -1,4 +1,4 @@
-// 关卡校验：纯函数，输入画布上的 nodes / edges，输出每项检查是否通过
+// 步骤检查：输入画布 nodes / edges，返回每步是否完成
 const kindOf = (node) => node.data?.kind;
 
 function hasLink(nodes, edges, sourceKind, targetKind) {
@@ -14,23 +14,17 @@ function hasLink(nodes, edges, sourceKind, targetKind) {
   });
 }
 
-const countAtLeast = (nodes, kind) =>
-  nodes.some((n) => kindOf(n) === kind);
-
-const testers = {
-  deployment: (nodes) => countAtLeast(nodes, 'Deployment'),
-  service: (nodes) => countAtLeast(nodes, 'Service'),
-  pod: (nodes) => countAtLeast(nodes, 'Pod'),
-  'dep-manages-pod': (nodes, edges) =>
-    hasLink(nodes, edges, 'Deployment', 'Pod'),
-  'svc-selects-pod': (nodes, edges) =>
-    hasLink(nodes, edges, 'Service', 'Pod'),
+export const stepChecks = {
+  deployment: (nodes) => nodes.some((n) => kindOf(n) === 'Deployment'),
+  configmap: (nodes, edges) => hasLink(nodes, edges, 'Deployment', 'ConfigMap'),
+  secret: (nodes, edges) => hasLink(nodes, edges, 'Deployment', 'Secret'),
+  sa: (nodes, edges) => hasLink(nodes, edges, 'Deployment', 'ServiceAccount'),
+  service: (nodes, edges) => hasLink(nodes, edges, 'Service', 'Deployment'),
 };
 
-export function validateLevel(level, nodes, edges) {
-  return level.checks.map((check) => ({
-    id: check.id,
-    label: check.label,
-    passed: testers[check.id](nodes, edges),
+export function evaluateSteps(steps, nodes, edges) {
+  return steps.map((step) => ({
+    id: step.id,
+    passed: stepChecks[step.id](nodes, edges),
   }));
 }

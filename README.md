@@ -1,6 +1,6 @@
 # 小游戏大全
 
-基于 React 19 + Vite 的小游戏合集，目前收录井字棋，后续可按下方步骤持续添加新游戏。
+基于 React 19 + Vite 的小游戏合集，目前收录井字棋与 K8S 实验室，后续可按下方步骤持续添加新游戏。
 
 ## 本地运行
 
@@ -27,14 +27,19 @@ src/
     │   ├── index.jsx     # 游戏组件
     │   ├── TicTacToe.css # 游戏样式（选择器均以 .tictactoe 限定）
     │   └── Icon.jsx      # 大厅卡片图标
-    └── K8sLab/           # K8S 实验室（拖拽资源拓扑闯关）
-        ├── index.jsx     # 游戏主组件（画布 + 三栏布局）
-        ├── levels.js     # 关卡定义（目标与检查项）
-        ├── validate.js   # 校验纯函数
-        ├── Sidebar.jsx   # 左侧资源库（可拖拽/点击）
-        ├── GoalPanel.jsx # 右侧关卡目标与部署结果
-        ├── ResourceIcon.jsx
-        ├── nodes/ResourceNode.jsx  # 自定义资源节点
+    └── K8sLab/           # K8S 实验室（拖拽资源拓扑 + YAML 对照闯关）
+        ├── index.jsx     # 游戏主组件（资源库 | 画布 | 引导+YAML）
+        ├── levels.js     # 关卡定义（故事 + 分步引导）
+        ├── validate.js   # 步骤检查纯函数
+        ├── yaml.js       # 各资源 YAML 生成（带中文注释，连线后字段出现）
+        ├── resources/
+        │   ├── definitions.js   # 资源库、合法连线、handle 与配色
+        │   └── ResourceIcon.jsx # 资源图标
+        ├── nodes/ResourceNode.jsx   # 自定义资源节点
+        ├── panels/
+        │   ├── Sidebar.jsx     # 资源库（拖拽/点击）
+        │   ├── GuidePanel.jsx  # 分步引导、部署按钮与终端
+        │   └── YamlPanel.jsx   # YAML 只读面板（轻量高亮）
         ├── K8sLab.css
         └── Icon.jsx      # 大厅卡片图标
 ```
